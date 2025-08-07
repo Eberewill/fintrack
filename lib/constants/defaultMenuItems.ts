@@ -1,4 +1,4 @@
-import { MenuItem } from "../types/components.types";
+import { MenuItem } from "../../types/components.types";
 export const defaultMenuItems: MenuItem[] = [
   { 
     id: 'dashboard', 

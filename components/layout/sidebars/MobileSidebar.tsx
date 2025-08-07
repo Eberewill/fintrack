@@ -1,6 +1,6 @@
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { MobileSidebarProps } from "@/lib/types/components.types";
+import { MobileSidebarProps } from "@/types/components.types";
 import Logo from "../Logo";
 import NavigationItems from "../NavigationItems";
 

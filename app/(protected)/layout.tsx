@@ -3,7 +3,7 @@ import Header from "@/components/layout/Header";
 import DesktopSidebar from "@/components/layout/sidebars/DesktopSidebar";
 import { useSidebar } from "@/hooks/useSidebar";
 import { defaultMenuItems } from "@/lib/constants/defaultMenuItems";
-import { LayoutProps } from "@/lib/types/components.types";
+import { LayoutProps } from "@/types/components.types";
 import { cn } from "@/lib/utils";
 
 const Layout: React.FC<LayoutProps> = ({
@@ -12,14 +12,9 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
   const { isCollapsed } = useSidebar();
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Desktop Sidebar - Always visible on lg+ */}
+    <div className="min-h-screen bg-white">
       <DesktopSidebar menuItems={menuItems} />
-
-      {/* Header */}
       <Header />
-
-      {/* Main content */}
       <main
         className={cn(
           "transition-all duration-300 ease-in-out",

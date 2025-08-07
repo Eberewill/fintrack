@@ -1,6 +1,6 @@
 'use client';
 import { usePathname, useRouter } from 'next/navigation';
-import { MenuItem } from "@/lib/types/components.types";
+import { MenuItem } from "@/types/components.types";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { getIcon } from '@/lib/get-menu-icon';
@@ -60,12 +60,12 @@ const NavigationItems: React.FC<{
             key={item.id}
             variant={isActive ? "secondary" : "ghost"}
             className={cn(
-              "font-medium transition-all duration-300 ease-in-out",
+              "rounded-2xl transition-all duration-300 ease-in-out cursor-pointer",
               shouldShowIconOnly
                 ? "w-10 h-10 p-0 justify-center" // Desktop collapsed: icon only
                 : "w-full justify-start px-3 py-2.5 h-auto",
               isActive
-                ? "bg-gray-200 text-primary hover:bg-gray-300"
+                ? "bg-gray-200 text-primary hover:bg-gray-100"
                 : "text-gray-600 hover:bg-gray-100 hover:text-primary"
             )}
             onClick={() => handleItemClick(item)}

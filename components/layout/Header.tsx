@@ -1,8 +1,9 @@
  "use client"
-import { HeaderProps } from "@/lib/types/components.types";
+import { HeaderProps } from "@/types/components.types";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
-import { Grid3X3, Menu, Search } from "lucide-react";
+import {  Menu, Search } from "lucide-react";
+import { LayoutGrid } from 'lucide-react';
 import { Input } from "../ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import MobileSidebar from "./sidebars/MobileSidebar";
@@ -13,10 +14,11 @@ import { useSidebar } from "@/hooks/useSidebar";
 const Header: React.FC<HeaderProps> = ({ className }) => {
 
     const { toggleCollapsed } = useSidebar();
+    const mockAvatarUrl = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face"
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60",
+      "sticky top-0 z-50 w-full  bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60",
       className
     )}>
       <div className="flex h-16 items-center justify-between px-4 lg:px-6 ">
@@ -75,12 +77,12 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
             size="sm"
             className="p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900"
           >
-            <Grid3X3 className="h-5 w-5" />
+            <LayoutGrid className="h-5 w-5" />
             <span className="sr-only">Grid view</span>
           </Button>
 
           <Avatar className="h-8 w-8 cursor-pointer ring-offset-2 hover:ring-2 hover:ring-primary transition-all">
-            <AvatarImage src="" alt="User" />
+            <AvatarImage src={mockAvatarUrl} alt="User" />
             <AvatarFallback className="bg-gradient-to-br from-primary to-primary text-white text-sm font-medium">
               U
             </AvatarFallback>
