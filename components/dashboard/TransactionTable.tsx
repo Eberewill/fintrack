@@ -44,8 +44,8 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
   //sorting options
   const sortedTransactions = useMemo(() => {
     return [...transactions].sort((a, b) => {
-      let aValue: any = a[sortField];
-      let bValue: any = b[sortField];
+      let aValue = a[sortField];
+      let bValue = b[sortField];
 
       if (sortField === "date") {
         aValue = new Date(aValue).getTime();
@@ -53,8 +53,8 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
       }
 
       if (sortField === "amount") {
-        aValue = Math.abs(aValue);
-        bValue = Math.abs(bValue);
+        aValue = Math.abs(aValue as number);
+        bValue = Math.abs(bValue as number);
       }
 
       if (aValue < bValue) return sortDirection === "asc" ? -1 : 1;
