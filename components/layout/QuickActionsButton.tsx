@@ -11,28 +11,7 @@ import { Button } from '../ui/button';
 
 const QuickActionsButton = () => {
   const handleQuickAction = (action: string) => {
-    switch (action) {
-      case 'add-transaction':
-        console.log('Open add transaction modal');
-        break;
-      case 'export-data':
-        console.log('Export data');
-        break;
-      case 'import-data':
-        console.log('Import data');
-        break;
-      case 'calculator':
-        console.log('Open calculator');
-        break;
-      case 'calendar':
-        console.log('Open calendar');
-        break;
-      case 'generate-report':
-        console.log('Generate report');
-        break;
-      default:
-        break;
-    }
+    console.log('action: ', action);
   };
 
   return (

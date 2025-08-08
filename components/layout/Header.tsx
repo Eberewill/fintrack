@@ -3,8 +3,7 @@ import { useState } from "react";
 import { HeaderProps } from "@/types/components.types";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
-import { Menu, Search, User, Settings, LogOut, HelpCircle, Bell, X } from "lucide-react";
-import { LayoutGrid } from 'lucide-react';
+import { Menu, Search, User, Settings, LogOut, HelpCircle} from "lucide-react";
 import { Input } from "../ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
@@ -51,7 +50,8 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         console.log('Open help center');
         break;
       case 'logout':
-        console.log('Logout user');
+        //goto login page 
+          window.location.href = "/login";
         break;
       default:
         break;
@@ -102,13 +102,13 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         </button>
         
         <div className="border-t border-gray-200 mt-2 pt-2">
-          <button
+          <Button
             className="flex items-center w-full px-4 py-3 text-sm text-red-600 hover:bg-red-50"
             onClick={() => handleMenuAction('logout')}
           >
             <LogOut className="mr-3 h-4 w-4" />
             Log out
-          </button>
+          </Button>
         </div>
       </div>
     </>

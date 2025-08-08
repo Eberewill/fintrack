@@ -8,13 +8,9 @@ import NavigationItems from "../NavigationItems";
 const MobileSidebar: React.FC<MobileSidebarProps> = ({ menuItems, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Handle navigation item click - close sidebar
-  const handleNavigationClick = (item: any) => {
-    // Close the sheet
+  const handleNavigationClick = () => {
     setIsOpen(false);
-    
-    // Optional: Add any additional logic here
-    console.log(`Navigating to ${item.label}`);
+    //console.log(`Navigating to ${item.label}`);
   };
 
   return (

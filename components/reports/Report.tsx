@@ -40,7 +40,7 @@ const ReportsPage: React.FC = () => {
         title="Reports"
         subtitle="Generate and download financial reports"
         actions={
-          <Button className="bg-primary hover:bg-primary/90 text-gray-900 ">
+          <Button className="bg-primary hover:bg-primary/90 ">
             <Download className="h-4 w-4 mr-2" />
             Export All
           </Button>

@@ -53,7 +53,6 @@ const EnhancedTransactionsPage: React.FC = () => {
         actions={actions}
       />
 
-      {/* Filters */}
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1">
@@ -72,7 +71,7 @@ const EnhancedTransactionsPage: React.FC = () => {
               <SelectTrigger>
                 <SelectValue placeholder="Filter by type" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="text-gray-900">
                 <SelectItem value="all">All Types</SelectItem>
                 <SelectItem value="credit">Credits Only</SelectItem>
                 <SelectItem value="debit">Debits Only</SelectItem>

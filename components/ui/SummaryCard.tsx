@@ -36,7 +36,7 @@ const SummaryCard: React.FC<SummaryCardProps> = ({
       </div>
 
 
-      <div className="text-3xl font-bold text-gray-900 mb-2">
+      <div className=" text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
         {formatAmount()}
       </div>
 

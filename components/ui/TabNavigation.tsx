@@ -53,7 +53,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({
                   <span className={cn(
                     "px-2 py-0.5 text-xs rounded-full",
                     isActive 
-                      ? "bg-blue-100 text-primary"
+                      ? "bg-primary text-primary"
                       : "bg-gray-100 text-gray-600"
                   )}>
                     {tab.count}

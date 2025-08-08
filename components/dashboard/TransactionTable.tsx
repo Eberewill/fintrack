@@ -82,7 +82,7 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
             <SelectTrigger className="w-[120px] h-7 text-xs">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="text-gray-900">
               <SelectItem value="date">Date</SelectItem>
               <SelectItem value="remark">Remark</SelectItem>
               <SelectItem value="amount">Amount</SelectItem>
@@ -109,7 +109,7 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
                 <div className="text-right">
                   <div
                     className={cn(
-                      "text-lg font-bold",
+                      "text-lg font-medium",
                       transaction.amount >= 0
                         ? "text-green-700"
                         : "text-gray-900"

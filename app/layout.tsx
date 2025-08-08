@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Public_Sans } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   themeColor: "#ffffff",
 };
 
-const font = Poppins({
+const font = Public_Sans({
   subsets: ["latin"],
   display: "swap",
   weight: ["300", "400", "500", "600", "700"],
@@ -21,7 +21,7 @@ const font = Poppins({
 
 function RootLayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full font-poppins">
+    <html lang="en" className="h-full font-sans ">
       <body className={`scroll-smooth ${font.className}`}>{children}</body>
     </html>
   );
