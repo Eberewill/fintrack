@@ -102,13 +102,13 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         </button>
         
         <div className="border-t border-gray-200 mt-2 pt-2">
-          <Button
+          <button
             className="flex items-center w-full px-4 py-3 text-sm text-red-600 hover:bg-red-50"
             onClick={() => handleMenuAction('logout')}
           >
             <LogOut className="mr-3 h-4 w-4" />
             Log out
-          </Button>
+          </button>
         </div>
       </div>
     </>
