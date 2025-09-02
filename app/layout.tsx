@@ -19,10 +19,16 @@ const font = Public_Sans({
   fallback: ["system-ui", "sans-serif"],
 });
 
+import { ApiClientWrapper } from "../contexts/api.context";
+
 function RootLayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full font-sans ">
-      <body className={`scroll-smooth ${font.className}`}>{children}</body>
+      <body className={`scroll-smooth ${font.className}`}>
+        <ApiClientWrapper>
+          {children}
+        </ApiClientWrapper>
+      </body>
     </html>
   );
 }
