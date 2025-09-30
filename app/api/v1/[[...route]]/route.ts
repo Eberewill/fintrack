@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest, { params }: { params: { route: string[] } }) {
-    const route = params.route?.join('/') || '';
+export async function GET(req: NextRequest, { params }: { params: Promise<{ route: string[] }> }) {
+    const { route: routeArray } = await params;
+    const route = routeArray?.join('/') || '';
 
     if (route === 'dashboard/stats') {
         return NextResponse.json({
@@ -39,8 +40,9 @@ export async function GET(req: NextRequest, { params }: { params: { route: strin
     return NextResponse.json({ error: 'Not Found' }, { status: 404 });
 }
 
-export async function POST(req: NextRequest, { params }: { params: { route: string[] } }) {
-    const route = params.route?.join('/') || '';
+export async function POST(req: NextRequest, { params }: { params: Promise<{ route: string[] }> }) {
+    const { route: routeArray } = await params;
+    const route = routeArray?.join('/') || '';
 
     if (route === 'auth/login') {
         const body = await req.json();

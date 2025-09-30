@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { useApiClient } from '../../contexts/api.context';
-import { endpoints } from '../api/endpoints';
+import { useApiClient } from '../../../contexts/api.context';
+import { endpoints } from '../endpoints';
 
 export const useDashboardStats = () => {
     const apiClient = useApiClient();

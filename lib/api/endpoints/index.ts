@@ -1,6 +1,6 @@
 export interface ApiEndpoint {
     method: string;
-    getEndpoint: (params?: any) => string;
+    getEndpoint: (params?: Record<string, unknown>) => string;
 }
 
 export const endpoints = {

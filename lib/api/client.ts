@@ -4,13 +4,13 @@ export interface ApiError {
     message: string;
     status: number;
     code?: string;
-    data?: any;
+    data?: unknown;
 }
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
     data: T;
     status: number;
-    headers: any;
+    headers: Record<string, unknown>;
     statusText: string;
 }
 
@@ -45,7 +45,7 @@ class ApiClient {
         );
     }
 
-    public async request<T = any>(config: AxiosRequestConfig & { endpoint?: string }): Promise<ApiResponse<T>> {
+    public async request<T = unknown>(config: AxiosRequestConfig & { endpoint?: string }): Promise<ApiResponse<T>> {
         const { endpoint, ...axiosConfig } = config;
         
         if (endpoint) {
