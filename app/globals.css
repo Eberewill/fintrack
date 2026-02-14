@@ -150,21 +150,33 @@
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
+
+  /* ... existing vars ... */
   --shadow-2xl: var(--shadow-2xl);
 }
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 dark:bg-black/70 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+}
+
 
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
-    overscroll-behavior-y: none; /* Prevents bounce */
+    overscroll-behavior-y: none;
+    /* Prevents bounce */
     scroll-behavior: smooth;
   }
- header {
-  will-change: transform;
-  backface-visibility: hidden;
-}
+
+  header {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
 }

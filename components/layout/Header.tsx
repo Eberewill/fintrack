@@ -1,9 +1,9 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HeaderProps } from "@/types/components.types";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
-import { Menu, Search, User, Settings, LogOut, HelpCircle} from "lucide-react";
+import { Menu, Search, User, Settings, LogOut, HelpCircle } from "lucide-react";
 import { Input } from "../ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
@@ -27,18 +27,39 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
   const { toggleCollapsed } = useSidebar();
   const isMobile = useIsMobile(768);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+
   const mockAvatarUrl = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face";
-  
-  const user = {
+
+  /* const user = {
     name: "John Doe",
     email: "john.doe@fintrack.com",
     initials: "JD"
-  };
+  }; */
+
+  const [user, setUser] = useState<{ name: string, email: string, initials: string } | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("/api/auth/me");
+        if (res.ok) {
+          const data = await res.json();
+          setUser({
+            name: data.data.name,
+            email: data.data.email,
+            initials: data.data.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().substring(0, 2)
+          });
+        }
+      } catch (error) {
+        console.error("Failed to fetch user", error);
+      }
+    };
+    fetchUser();
+  }, []);
 
   const handleMenuAction = (action: string) => {
     setMobileMenuOpen(false); // Close mobile menu
-    
+
     switch (action) {
       case 'profile':
         console.log('Navigate to profile');
@@ -50,13 +71,17 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         console.log('Open help center');
         break;
       case 'logout':
-        //goto login page 
+        fetch("/api/auth/logout", { method: "POST" }).then(() => {
           window.location.href = "/login";
+        });
         break;
       default:
         break;
     }
   };
+
+  if (!user) return null; // Or a loading skeleton
+
 
   // Mobile User Menu Items
   const UserMenuItems = () => (
@@ -75,7 +100,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
           </div>
         </div>
       </div>
-      
+
       <div className="py-2">
         <button
           className="flex items-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100"
@@ -84,7 +109,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
           <User className="mr-3 h-4 w-4" />
           Profile
         </button>
-        
+
         <button
           className="flex items-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100"
           onClick={() => handleMenuAction('settings')}
@@ -92,7 +117,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
           <Settings className="mr-3 h-4 w-4" />
           Settings
         </button>
-        
+
         <button
           className="flex items-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100"
           onClick={() => handleMenuAction('help')}
@@ -100,7 +125,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
           <HelpCircle className="mr-3 h-4 w-4" />
           Help & Support
         </button>
-        
+
         <div className="border-t border-gray-200 mt-2 pt-2">
           <button
             className="flex items-center w-full px-4 py-3 text-sm text-red-600 hover:bg-red-50"
@@ -116,7 +141,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60  border-gray-200",
+      "sticky top-0 z-50 w-full glass border-b-0",
       className
     )}>
       <div className="flex h-16 items-center justify-between px-4 lg:px-6">
@@ -196,7 +221,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              
+
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
@@ -208,27 +233,27 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                     </p>
                   </div>
                 </DropdownMenuLabel>
-                
+
                 <DropdownMenuSeparator />
-                
+
                 <DropdownMenuItem onClick={() => handleMenuAction('profile')}>
                   <User className="mr-2 h-4 w-4" />
                   <span>Profile</span>
                 </DropdownMenuItem>
-                
+
                 <DropdownMenuItem onClick={() => handleMenuAction('settings')}>
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Settings</span>
                 </DropdownMenuItem>
-                
+
                 <DropdownMenuItem onClick={() => handleMenuAction('help')}>
                   <HelpCircle className="mr-2 h-4 w-4" />
                   <span>Help & Support</span>
                 </DropdownMenuItem>
-                
+
                 <DropdownMenuSeparator />
-                
-                <DropdownMenuItem 
+
+                <DropdownMenuItem
                   className="text-red-600 focus:text-red-600 focus:bg-red-50"
                   onClick={() => handleMenuAction('logout')}
                 >
@@ -244,4 +269,4 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
   );
 };
 
-export   default Header
+export default Header
