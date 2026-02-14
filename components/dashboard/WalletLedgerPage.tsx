@@ -15,6 +15,8 @@ const tabs = [
   { id: "transactions", label: "Transactions" },
 ];
 
+import { motion, AnimatePresence } from "framer-motion";
+
 const WalletLedgerPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState("overview"); //default overview tab
   const actions = <Button className=" text-gray-900 rounded-2xl">Share</Button>;
@@ -32,17 +34,33 @@ const WalletLedgerPage: React.FC = () => {
       />
 
       <div className="mt-8">
-        {activeTab === "overview" && (
-          <DashboardOverview
-            summary={sampleDashboardSummary}
-            transactions={sampleTransactions}
-          />
-        )}
-        {activeTab === "transactions" && (
-          <div>
-            <TransactionTable transactions={sampleTransactions} />
-          </div>
-        )}
+        <AnimatePresence mode="wait">
+          {activeTab === "overview" && (
+            <motion.div
+              key="overview"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.2 }}
+            >
+              <DashboardOverview
+                summary={sampleDashboardSummary}
+                transactions={sampleTransactions}
+              />
+            </motion.div>
+          )}
+          {activeTab === "transactions" && (
+            <motion.div
+              key="transactions"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.2 }}
+            >
+              <TransactionTable transactions={sampleTransactions} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

@@ -43,6 +43,11 @@ export function LoginForm({
             </div>
           </div>
           <div className="flex flex-col gap-6">
+            <div className="bg-muted p-4 rounded-lg border text-sm space-y-1">
+              <p className="font-semibold text-primary">Demo Credentials:</p>
+              <p>Email: <code className="bg-background px-1 rounded">eberewill@gmail.com</code></p>
+              <p>Password: <code className="bg-background px-1 rounded">Password123!</code></p>
+            </div>
             <div className="grid gap-3">
               <Label htmlFor="email">Email</Label>
               <Input
